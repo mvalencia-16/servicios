@@ -21,7 +21,10 @@ services:
     dockerfilePath: ./demo-hola-frontend/Dockerfile
     dockerContext: ./demo-hola-frontend
     plan: free
+    # VITE_BACKEND_URL debe pasarse como buildArg porque Vite la incrusta en build-time
+    dockerBuildArgs:
+      - name: VITE_BACKEND_URL
+        value: https://demo-hola-backend.onrender.com
     envVars:
       - key: VITE_BACKEND_URL
-        # URL pública del backend en Render
         value: https://demo-hola-backend.onrender.com
