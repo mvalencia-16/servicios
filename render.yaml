@@ -1,0 +1,27 @@
+services:
+  # ── Backend: Spring Boot ──────────────────────────────────────────────────────
+  - type: web
+    name: demo-hola-backend
+    runtime: docker
+    dockerfilePath: ./demo-hola/Dockerfile
+    dockerContext: ./demo-hola
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: CORS_ALLOWED_ORIGINS
+        # Render asigna automáticamente la URL del frontend; actualiza este valor
+        # con la URL real después del primer deploy (ej: https://demo-hola-frontend.onrender.com)
+        value: https://demo-hola-frontend.onrender.com
+
+  # ── Frontend: Vite + TypeScript servido con nginx ────────────────────────────
+  - type: web
+    name: demo-hola-frontend
+    runtime: docker
+    dockerfilePath: ./demo-hola-frontend/Dockerfile
+    dockerContext: ./demo-hola-frontend
+    plan: free
+    envVars:
+      - key: VITE_BACKEND_URL
+        # URL pública del backend en Render
+        value: https://demo-hola-backend.onrender.com

@@ -1,0 +1,26 @@
+# ─── Backend (Maven / Java) ───────────────────────────────────────────────────
+demo-hola/target/
+demo-hola/.mvn/
+!demo-hola/mvnw
+!demo-hola/mvnw.cmd
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+.idea/
+.classpath
+.project
+.settings/
+
+# ─── Frontend (Node / Vite) ───────────────────────────────────────────────────
+demo-hola-frontend/node_modules/
+demo-hola-frontend/dist/
+demo-hola-frontend/.env
+demo-hola-frontend/.env.local
+
+# ─── Sistema operativo ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
