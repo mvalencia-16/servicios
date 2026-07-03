@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//API-REST de TEST para verificar que el proyecto Spring Boot funciona correctamente y que se puede acceder desde el navegador o 
 @CrossOrigin(origins = "${cors.allowed-origins:http://localhost:5173}")
 @RestController
 public class hola {

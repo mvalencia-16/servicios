@@ -265,6 +265,101 @@ code {
   }
 }
 
+.pregunta-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0 0;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-h);
+    text-align: left;
+  }
+}
+
+.pregunta-row {
+  display: flex;
+  gap: 8px;
+
+  input[type='text'] {
+    flex: 1;
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-h);
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: var(--accent);
+    }
+  }
+
+  button {
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 7px 18px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background: var(--accent-bg);
+    color: var(--accent);
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+      border-color: var(--accent-border);
+      box-shadow: var(--shadow);
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.pregunta-form textarea {
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  resize: vertical;
+  outline: none;
+
+  &:focus {
+    border-color: var(--accent);
+  }
+}
+
+.alerta-riesgo {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(255, 80, 80, 0.12);
+  color: #d93025;
+  border: 1px solid rgba(255, 80, 80, 0.35);
+  text-align: left;
+}
+
+.pregunta-contador {
+  font-size: 12px;
+  color: var(--text);
+  text-align: right;
+
+  &.pregunta-contador--limite {
+    color: #d93025;
+    font-weight: 600;
+  }
+}
+
 #spacer {
   height: 88px;
   border-top: 1px solid var(--border);
@@ -294,3 +389,546 @@ code {
     border-right-color: var(--border);
   }
 }
+
+/* ── Controles de usuario / estado conyugal ── */
+.usuario-row,
+.ultima-nota-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-h);
+    white-space: nowrap;
+  }
+
+  input[type='text'] {
+    flex: 1;
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-h);
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: var(--accent);
+    }
+
+    &[readonly] {
+      background: var(--code-bg);
+      cursor: default;
+    }
+  }
+}
+
+.es-casado-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  > label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-h);
+    white-space: nowrap;
+  }
+}
+
+.es-casado-opciones {
+  display: flex;
+  gap: 8px;
+
+  .opcion-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:has(input:checked) {
+      border-color: var(--accent-border);
+      background: var(--accent-bg);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    input[type='radio'] {
+      accent-color: var(--accent);
+    }
+  }
+}
+
+/* ── Sección de indicadores ── */
+.indicadores-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+
+  > label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-h);
+  }
+}
+
+.indicadores-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.indicador-separador {
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ════════════════════════════════════════
+   UI: Evaluación de Relación
+   ════════════════════════════════════════ */
+
+body:has(#app-asesor) {
+  background: #fdf6f0;
+}
+
+#app:has(#app-asesor) {
+  max-width: 480px;
+  border: none;
+  background: #fdf6f0;
+}
+
+#app-asesor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 16px 40px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 2px;
+}
+
+.header-heart {
+  font-size: 22px;
+  color: #8b1a3a;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #8b1a3a;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 2px 16px rgba(100, 20, 50, 0.09);
+}
+
+.card-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: #8b1a3a;
+  margin: 0 0 16px;
+  letter-spacing: -0.2px;
+}
+
+/* ── Métricas del Corazón ── */
+.metricas-card .indicador-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5e8ec;
+  border-radius: 0;
+}
+
+.metricas-card .indicador-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.metricas-card .indicador-item:first-child {
+  padding-top: 0;
+}
+
+.metrica-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.metricas-card .indicador-nombre {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d1a22;
+}
+
+.metricas-card .indicador-valor {
+  font-size: 17px;
+  font-weight: 700;
+  color: #8b1a3a;
+  min-width: 28px;
+  text-align: right;
+}
+
+.metricas-card .indicador {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(to right, #c8445e 50%, #f0d5dc 50%);
+}
+
+.metricas-card .indicador::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #8b1a3a;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px rgba(139, 26, 58, 0.45);
+}
+
+.metricas-card .indicador::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #8b1a3a;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px rgba(139, 26, 58, 0.45);
+}
+
+.metricas-card .indicador-desc {
+  font-size: 11px;
+  color: #a08090;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ── Promedio card ── */
+.promedio-card {
+  background: linear-gradient(135deg, #fce9ef 0%, #f8dde6 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 20px;
+}
+
+.promedio-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #8b1a3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(139, 26, 58, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.promedio-circle:hover {
+  background: #6d1430;
+  transform: scale(1.07);
+}
+
+.promedio-circle:active {
+  transform: scale(0.96);
+}
+
+.promedio-heart-icon {
+  color: #fff;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.promedio-valor {
+  font-size: 22px;
+  font-weight: 600;
+  color: #8b1a3a;
+}
+
+.promedio-valor strong {
+  font-weight: 800;
+}
+
+/* ── Config card ── */
+.config-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.config-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.config-row label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8b1a3a;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.config-row input[type='text'] {
+  flex: 1;
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #f0d5dc;
+  background: #fdf6f0;
+  color: #2d1a22;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.config-row input[type='text']:focus {
+  border-color: #c8445e;
+}
+
+.config-row .es-casado-opciones {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.config-card .opcion-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #fdf6f0;
+  border: 1px solid #f0d5dc;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.config-card .opcion-btn:has(input:checked) {
+  border-color: #c8445e;
+  background: #fce9ef;
+  color: #8b1a3a;
+  font-weight: 600;
+}
+
+.config-card .opcion-btn input[type='radio'] {
+  accent-color: #8b1a3a;
+}
+
+/* ── Consejero card ── */
+.consejero-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.respuesta-display {
+  min-height: 90px;
+  background: #fdf6f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #2d1a22;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  font-style: italic;
+  white-space: pre-wrap;
+}
+
+.consejero-pregunta-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.pregunta-input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pregunta-input-wrap input[type='text'] {
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
+.limpiar-pregunta-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: #a08090;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.limpiar-pregunta-btn:hover {
+  color: #8b1a3a;
+}
+
+.consejero-pregunta-row input[type='text'] {
+  flex: 1;
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #f0d5dc;
+  background: #fdf6f0;
+  color: #2d1a22;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.consejero-pregunta-row input[type='text']:focus {
+  border-color: #c8445e;
+}
+
+.consejero-pregunta-row button {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #8b1a3a;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.consejero-pregunta-row button:hover:not(:disabled) {
+  background: #6d1430;
+}
+
+.consejero-pregunta-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.guardar-evaluacion-btn {
+  width: 100%;
+  padding: 14px;
+  background: #8b1a3a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  display: block;
+  transition: background 0.2s;
+}
+
+.guardar-evaluacion-btn:hover:not(:disabled) {
+  background: #6d1430;
+}
+
+.guardar-evaluacion-btn:disabled {
+  background: #d4a0b0;
+  cursor: not-allowed;
+}
+
+.card-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  border-top: 1px solid #f0d5dc;
+  border-radius: 18px;
+  padding: 10px 0 8px;
+  box-shadow: 0 -2px 12px rgba(100, 20, 50, 0.07);
+  margin-top: 4px;
+}
+
+.bottom-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 20px;
+  color: #a08090;
+  transition: color 0.2s;
+}
+
+.bottom-nav-btn.active {
+  color: #8b1a3a;
+}
+
+.bottom-nav-btn:hover:not(.active) {
+  color: #c8445e;
+}
+
+.bottom-nav-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.bottom-nav-icon-wrap.active {
+  background: #fce9ef;
+}
+
+.bottom-nav-label {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--sans);
+}
+

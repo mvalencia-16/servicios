@@ -1,0 +1,18 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - The yaml file had comments which are lost in the refactoring!
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+server:
+  port: ${PORT:8088}
+
+ia:
+  deepseek:
+    url: https://api.deepseek.com/v1
+    modelo: deepseek-chat
+    api-key: ${DEEPSEEK_API_KEY}
+
+app:
+  api-key: ${APP_API_KEY:dev-local-key-1234}
+  rate-limit:
+    peticiones-por-minuto: 20
