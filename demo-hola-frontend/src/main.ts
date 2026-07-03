@@ -113,7 +113,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 // Llamadas al API REST del backend demo-hola
 // En local: crear demo-hola-frontend/.env con VITE_BACKEND_URL=http://localhost:8080
 // En Render: configurar la variable de entorno VITE_BACKEND_URL con la URL del backend
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8088'
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8080'
 const APP_API_KEY = import.meta.env.VITE_APP_API_KEY ?? 'dev-local-key-1234'
 
 async function callSaludo(endpoint: string, spanId: string) {
