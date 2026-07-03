@@ -2,9 +2,11 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# VITE_BACKEND_URL se incrusta en el bundle en build-time (no runtime)
+# Variables Vite: se incrustan en el bundle en build-time (no runtime)
 ARG VITE_BACKEND_URL=https://demo-hola-backend.onrender.com
 ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+ARG VITE_APP_API_KEY=dev-local-key-1234
+ENV VITE_APP_API_KEY=$VITE_APP_API_KEY
 
 COPY package.json .
 RUN npm install
