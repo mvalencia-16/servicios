@@ -3,7 +3,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # VITE_BACKEND_URL se incrusta en el bundle en build-time (no runtime)
-ARG VITE_BACKEND_URL=http://localhost:8080
+ARG VITE_BACKEND_URL=https://demo-hola-backend.onrender.com
 ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
 
 COPY package.json .
