@@ -154,8 +154,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div class="consejero-pregunta-row">
       <div class="pregunta-input-wrap">
         <input type="text" id="pregunta-input" maxlength="200" placeholder="Escribe tu reflexión o pregunta..." />
-        <button type="button" id="limpiar-pregunta-btn" class="limpiar-pregunta-btn" title="Limpiar">&#x2715;</button>
       </div>
+      <button type="button" id="limpiar-pregunta-btn" class="limpiar-pregunta-btn" title="Limpiar">&#x2715;</button>
       <button id="realizar-pregunta-btn" type="button">Aconsejar</button>
     </div>
     <span id="pregunta-contador" class="pregunta-contador">0 / 200</span>
