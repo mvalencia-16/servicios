@@ -786,7 +786,7 @@ body:has(#app-asesor) {
 
 .pregunta-input-wrap input[type='text'] {
   width: 100%;
-  padding-right: 30px;
+  padding-right: 36px;
   box-sizing: border-box;
 }
 
@@ -811,7 +811,7 @@ body:has(#app-asesor) {
   flex: 1;
   font-family: var(--sans);
   font-size: 14px;
-  padding: 10px 14px;
+  padding: 10px 38px 10px 14px;
   border-radius: 10px;
   border: 1px solid #f0d5dc;
   background: #fdf6f0;
