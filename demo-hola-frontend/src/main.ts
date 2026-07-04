@@ -1,11 +1,87 @@
 import './style.css'
 
+// ── Animaciones: Latido de corazón + Epicentro ────────────────────────────────
+const animStyle = document.createElement('style')
+animStyle.textContent = `
+  /* 1. Latido continuo del botón */
+  @keyframes heartbeat {
+    0%   { transform: scale(1); }
+    14%  { transform: scale(1.13); }
+    28%  { transform: scale(1); }
+    42%  { transform: scale(1.09); }
+    56%  { transform: scale(1); }
+    100% { transform: scale(1); }
+  }
+  .promedio-circle {
+    animation: heartbeat 1.6s ease-in-out infinite;
+  }
+  .promedio-circle:hover,
+  .promedio-circle:active {
+    animation: none;
+  }
+
+  /* Logo +ME en el header */
+  .header-logo-me {
+    margin-left: auto;
+    flex-shrink: 0;
+    user-select: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b1a3a 0%, #c8445e 100%);
+    box-shadow: 0 2px 10px rgba(139,26,58,0.35);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    line-height: 1;
+  }
+  .header-logo-me .logo-plus {
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+  .header-logo-me .logo-me {
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    font-style: italic;
+    line-height: 1;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* 2. Epicentro: anillos que se expanden al hacer clic */
+  @keyframes epicentro {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(4.5); opacity: 0; }
+  }
+  .epicentro-ring {
+    position: fixed;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border: 3px solid #c8445e;
+    background: transparent;
+    pointer-events: none;
+    z-index: 9999;
+    animation: epicentro 1s ease-out forwards;
+  }
+`
+document.head.appendChild(animStyle)
+
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <div id="app-asesor">
 
   <header class="app-header">
     <span class="header-heart">♡</span>
-    <h1 class="header-title">Evaluación de Relación</h1>
+    <h1 class="header-title">"SUMAME": Evaluación de Relación</h1>
+    <div class="header-logo-me">
+      <span class="logo-plus">+</span>
+      <span class="logo-me">ME</span>
+    </div>
   </header>
 
   <div class="card config-card">
@@ -68,7 +144,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <button type="button" class="promedio-circle" id="promedio-btn">
       <span class="promedio-heart-icon">♥</span>
     </button>
-    <div class="promedio-valor">Promedio: <strong id="ultima-nota-display">5.0</strong></div>
+    <div class="promedio-valor">Nota Relación: <strong id="ultima-nota-display">5.0</strong></div>
     <input type="hidden" id="ultima-nota" value="5.0" />
     <div id="respuesta-output-default" class="respuesta-display">La respuesta aparecerá aquí...</div>
   </div>
@@ -322,5 +398,24 @@ document.querySelector<HTMLButtonElement>('#nav-inicio')!
     if (contador) contador.textContent = '0 / 200'
     const alerta = document.querySelector<HTMLSpanElement>('#alerta-riesgo')
     if (alerta) { alerta.hidden = true; alerta.textContent = '' }
+  })
+
+// Efecto epicentro al hacer clic en el botón círculo
+document.querySelector<HTMLButtonElement>('#promedio-btn')!
+  .addEventListener('click', (e) => {
+    const btn = e.currentTarget as HTMLButtonElement
+    const rect = btn.getBoundingClientRect()
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    // 3 anillos con delay escalonado
+    ;[0, 180, 360].forEach((delay) => {
+      const ring = document.createElement('span')
+      ring.className = 'epicentro-ring'
+      ring.style.left = `${cx}px`
+      ring.style.top = `${cy}px`
+      ring.style.animationDelay = `${delay}ms`
+      document.body.appendChild(ring)
+      ring.addEventListener('animationend', () => ring.remove())
+    })
   })
 
